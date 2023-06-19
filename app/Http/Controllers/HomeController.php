@@ -27,38 +27,7 @@ class HomeController extends Controller
 
 
     {
-        // $postscol = null;
-
-        // if (is_null($author_id)){
-
-        //     $postscol =  Post::where([
-        //         'category_id'=> $category_id,
-        //         //'user_id' => $author_id, // optional parameter post
-        
-        //     ],)
-        //                 ->latest()
-        //                 ->with('author')
-        //                 ->take(5)
-        //                 ->get();
-
-       
-
-        // }else{//if there is optional parameter
-
-        //     $postscol =  Post::where([
-        //         'category_id'=> $category_id,
-        //         'user_id' => $author_id, // optional parameter post
-        
-        //         ])
-        //                 ->latest()
-        //                 ->with('author')
-        //                 ->take(5)
-        //                 ->get();
-
-        
-        // }
-
-
+   
         $postscol =  Post::with('author');
 
         if (is_null($author_id)){
