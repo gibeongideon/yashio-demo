@@ -28,18 +28,11 @@ class HomeController extends Controller
 
     {
    
-        $postscol =  Post::with('author');
+        $postscol = Post::where([
+            'category_id'=> $category_id
+        ]);
 
-        if (is_null($author_id)){
-
-            $postscol = $postscol
-                ->where([
-                'category_id'=> $category_id,
-        
-            ],);
-
-
-        }else{//if there is optional parameter
+        if (!is_null($author_id)){//if there is optional parameter
 
             $postscol =  $postscol
                 ->where([
@@ -47,7 +40,7 @@ class HomeController extends Controller
                 'user_id' => $author_id, // optional parameter post
         
             ]);
-
+            // dd($postscol->count());
         }
 
         // TODO refactor above code /It look messy and long!
@@ -56,6 +49,7 @@ class HomeController extends Controller
 
             'posts' => $postscol
                            ->latest()
+                           ->with('author')
                            ->take(5)
                            ->get(),
 
