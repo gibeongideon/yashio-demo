@@ -34,13 +34,13 @@ Route::get('/',function(User $author){
 
 
 
-Route::get('/posts/{category_id}/{author_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
+Route::get('/posts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
 
 
 
 
 
-Route::get('/posts', [PostController::class, 'index'])->name('home');
+// Route::get('/posts', [PostController::class, 'index'])->name('home');
 
 
 Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('postdetails');

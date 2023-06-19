@@ -18,32 +18,23 @@ class HomeController extends Controller
      * Display a listing of the posts.
      * It Also filter post by CATEGORY and by OPtional User/Author
      */
-    public function index($category_id,$author_id = null,)
+    public function index($category_id = null,)
 
-
-    //Optional parameters
-     // 1. author_id   : you can filter all posts for perticular category with specific author/user
-     // CAN ADD MORE OPTIONAL PARAMETERS 
-
+    //Optional parameter
+     // 1. category_id   : you can filter all posts  and by for perticular category if category parameter is specifiedd 
 
     {
-   
-        $postscol = Post::where([
-            'category_id'=> $category_id
-        ]);
+        $postscol = Post::with('author');
 
-        if (!is_null($author_id)){//if there is optional parameter
+        if (!is_null($category_id)){//if there is optional category parameter
 
             $postscol =  $postscol
                 ->where([
-                'category_id'=> $category_id,
-                'user_id' => $author_id, // optional parameter post
+                'category_id'=> $category_id, // optional category parameter post
         
             ]);
             // dd($postscol->count());
         }
-
-        // TODO refactor above code /It look messy and long!
 
         return view('latestposts', [
 
