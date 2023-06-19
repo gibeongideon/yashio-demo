@@ -27,46 +27,71 @@ class HomeController extends Controller
 
 
     {
-        $postscol = null;
+        // $postscol = null;
 
-        if (is_null($author_id)){
+        // if (is_null($author_id)){
 
-            $postscol =  Post::where([
-                'category_id'=> $category_id,
-                //'user_id' => $author_id, // optional parameter post
+        //     $postscol =  Post::where([
+        //         'category_id'=> $category_id,
+        //         //'user_id' => $author_id, // optional parameter post
         
-            ],)
-                        ->latest()
-                        ->with('author')
-                        ->take(5)
-                        ->get();
+        //     ],)
+        //                 ->latest()
+        //                 ->with('author')
+        //                 ->take(5)
+        //                 ->get();
 
        
 
+        // }else{//if there is optional parameter
+
+        //     $postscol =  Post::where([
+        //         'category_id'=> $category_id,
+        //         'user_id' => $author_id, // optional parameter post
+        
+        //         ])
+        //                 ->latest()
+        //                 ->with('author')
+        //                 ->take(5)
+        //                 ->get();
+
+        
+        // }
+
+
+        $postscol =  Post::with('author');
+
+        if (is_null($author_id)){
+
+            $postscol = $postscol
+                ->where([
+                'category_id'=> $category_id,
+        
+            ],);
+
+
         }else{//if there is optional parameter
 
-            $postscol =  Post::where([
+            $postscol =  $postscol
+                ->where([
                 'category_id'=> $category_id,
                 'user_id' => $author_id, // optional parameter post
         
-                ])
-                        ->latest()
-                        ->with('author')
-                        ->take(5)
-                        ->get();
+            ]);
 
-        
         }
 
         // TODO refactor above code /It look messy and long!
 
         return view('latestposts', [
-      
-            'posts' => $postscol,
-            
+
+            'posts' => $postscol
+                           ->latest()
+                           ->take(5)
+                           ->get(),
+
         ]);
     }
-
 
 
     // public function index($id)
