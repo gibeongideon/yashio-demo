@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function index($category_id = null,)
 
-    //Optional parameter
+    //Optional paramr
      // 1. category_id   : you can filter all posts  and by for perticular category if category parameter is specifiedd 
 
     {
@@ -40,7 +40,6 @@ class HomeController extends Controller
 
             'posts' => $postscol
                            ->latest()
-                           ->with('author')
                            ->take(5)
                            ->get(),
 
