@@ -8,7 +8,7 @@ use App\Models\Category;
 use Illuminate\Database\Seeder;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Role;
+use App\Models\Tag;
 
 class DatabaseSeeder extends Seeder
 {
@@ -46,27 +46,26 @@ class DatabaseSeeder extends Seeder
 
         //ROLES
 
-        $role1 = Role::factory()->create([
+        $tag1 = Tag::factory()->create([
             'name' => 'Author',
             
         ]) ;   
-        $role2 = Role::factory()->create([
+        $tag2 = Tag::factory()->create([
             'name' => 'Editor',
             
         ]) ; 
 
-        $role1 = Role::factory()->create([
+        $tag1 = Tag::factory()->create([
             'name' => 'Publisher',
             
         ]) ; 
 
-
+        
         Post::factory(5)->create([
             'user_id' => $author1->id,
             'category_id' => $category1,
         ]);
 
-        
         Post::factory(5)->create([
             'user_id' => $author2->id,
             'category_id' => $category2,
