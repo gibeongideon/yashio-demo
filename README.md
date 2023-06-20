@@ -15,3 +15,13 @@ Task 1
 3. Associate the tag model with the Post model.
 4. This relationship between the Post model and the tag model is Many to Many: the Post model can have multiple tags, and the tag model can have multiple posts.
 5. Tags associated with Post should be displayed as follows.
+
+
+ROUTES:
+
+  GET|HEAD   api/user ........................................................................................................................ 
+  GET|HEAD   authors/{author} ................................................................................................................ 
+  GET|HEAD   categories/{category} ............................................................................................. categoryposts
+  GET|HEAD   post/{post} ................................................................................... postdetails › PostController@show
+  GET|HEAD   posts/{category_id?} ............................................................................... index › HomeController@index
+  GET|HEAD   sanctum/csrf-cookie ........................................... sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show
