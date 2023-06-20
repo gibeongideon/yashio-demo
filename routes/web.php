@@ -26,8 +26,7 @@ Route::get('/',function(User $author){
  
    // dd('TEst'.$posts->count());
  
-     return  ['Test'=>"Yashio Kenya HOME . Please check  route 'posts/{category_id}/{author_id?'  ",
-    'Que'=>''];
+     return  ['Test'=>"Yashio Kenya HOME . Please check  route 'posts/{category_id?}'  ",];
  });
 
 
