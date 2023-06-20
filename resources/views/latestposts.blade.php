@@ -9,7 +9,7 @@
         @foreach($posts as $post)
 
             <h1>
-                <a href="posts/{{$post->slug}}">
+                <a href="post/{{$post->slug}}">
                 BLOG ID: {{$post->id}}
                 TITTLE:{{$post->tittle}}
 
@@ -43,6 +43,16 @@
             <p>
                 {{$post->body}}
             </p>
+            </div>
+
+            <div>
+
+                      Tags:
+            @foreach($post->tags as $tag)
+
+            <h6>{{$tag->name}}</h6>
+
+            @endforeach
             </div>
             
         @endforeach

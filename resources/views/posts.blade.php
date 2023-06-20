@@ -41,19 +41,21 @@
 
            
 
-            @foreach($post->roles as $role)
-            Tags:
-
-            <h6>$role->name</h6>
-
-            @endforeach
-
 
              </div>
               
 
          
-            
+                        <div>
+
+
+<p>
+TAGS:
+
+</p>
+
+
+             </div>
             </div>
 
             <div>
