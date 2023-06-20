@@ -8,7 +8,7 @@
         @foreach($posts as $post)
 
             <h1>
-                <a href="posts/{{$post->slug}}">
+                <a href="{{route('postdetails',$post-slug)}}">
                 BLOG ID: {{$post->id}}
                 TITTLE:{{$post->tittle}}
 
@@ -34,7 +34,26 @@
                 Author:{{$post->author->name}}
 
                 </a>
-            </h5>            
+            </h5>    
+            
+            <div>
+
+
+           
+RRRRRRRRRRRRRRRRRRRR
+            @foreach($post->roles as $role)
+            Tags:
+
+            <h6>$role->name</h6>
+
+            @endforeach
+
+
+             </div>
+              
+
+         
+            
             </div>
 
             <div>

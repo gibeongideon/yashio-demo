@@ -8,7 +8,7 @@ use App\Models\Category;
 use Illuminate\Database\Seeder;
 use App\Models\Post;
 use App\Models\User;
-use GuzzleHttp\Promise\Create;
+use App\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -42,7 +42,23 @@ class DatabaseSeeder extends Seeder
         $category3 = Category::factory()->create([
             'name' => 'Fashion',
             
+        ]) ;  
+
+        //ROLES
+
+        $role1 = Role::factory()->create([
+            'name' => 'Author',
+            
         ]) ;   
+        $role2 = Role::factory()->create([
+            'name' => 'Editor',
+            
+        ]) ; 
+
+        $role1 = Role::factory()->create([
+            'name' => 'Publisher',
+            
+        ]) ; 
 
 
         Post::factory(5)->create([
@@ -50,6 +66,7 @@ class DatabaseSeeder extends Seeder
             'category_id' => $category1,
         ]);
 
+        
         Post::factory(5)->create([
             'user_id' => $author2->id,
             'category_id' => $category2,

@@ -36,13 +36,10 @@ Route::get('/',function(User $author){
 Route::get('/posts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
 
 
-
-
-
 // Route::get('/posts', [PostController::class, 'index'])->name('home');
 
 
-Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('postdetails');
+Route::get('post/{post:slug}', [PostController::class, 'show'])->name('postdetails');
 
 Route::get('categories/{category}',function(Category $category){
     return view('categoriesposts',[
