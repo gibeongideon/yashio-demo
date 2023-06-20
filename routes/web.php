@@ -42,13 +42,14 @@ Route::get('/posts/{category_id?}', [HomeController::class, 'index'])->name('ind
 Route::get('post/{post:slug}', [PostController::class, 'show'])->name('postdetails');
 
 Route::get('categories/{category}',function(Category $category){
-    return view('categoriesposts',[
+    return view('postsbycategory',[
 
         'posts'=>$category->post,
         'category' => $category,
         //'categories' => Category::all(),
     ]);
-})->name('categoryposts');
+    
+})->name('postsbycategory');
 
 
 Route::get('authors/{author}',function(User $author){

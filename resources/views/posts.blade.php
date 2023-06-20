@@ -19,8 +19,9 @@
 
             <h4>
               
+                <!-- <a href="/categories/{{$post->category->id}}"> -->
+                <a href="{{ route('postbycategory',$post->category->id) }}">
 
-                <a href="/categories/{{$post->category->id}}">
                 Category:{{$post->category->name}}
 
                 </a>

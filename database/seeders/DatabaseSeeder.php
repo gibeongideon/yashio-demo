@@ -66,6 +66,15 @@ class DatabaseSeeder extends Seeder
             'category_id' => $category1,
         ]);
 
+        foreach ($post1 as $post) {
+
+            $post->tags()->attach(1);
+
+        }
+
+
+
+
         // $post1->tags()->attach($post1->id);
 
         $post2 = Post::factory(5)->create([
@@ -73,7 +82,11 @@ class DatabaseSeeder extends Seeder
             'category_id' => $category2,
         ]);
 
-        // $post2->tags()->attach([2,]);
+        foreach ($post2 as $post) {
+
+            $post->tags()->attach(2);
+
+        }        // $post2->tags()->attach([2,]);
 
 
         $post3 = Post::factory(5)->create([
@@ -81,15 +94,28 @@ class DatabaseSeeder extends Seeder
             'category_id' => $category3,
         ]);
 
-        // $post3->tags()->attach([1,2,3]);
+        foreach ($post3 as $post) {
+
+            $post->tags()->attach(3);
+
+        }        // $post3->tags()->attach([1,2,3]);
 
         $post4 =Post::factory(5)->create([
             'user_id' => $author2->id,
             'category_id' => $category1,
         ]);
 
-        // $post4->tags()->attach([1,3]);
+        foreach ($post4 as $post) {
 
+            $post->tags()->attach(1);
+
+        }        // $post4->tags()->attach([1,3]);
+
+        foreach ($post1 as $post) {
+
+            $post->tags()->attach(2);
+
+        }
         
         
 
