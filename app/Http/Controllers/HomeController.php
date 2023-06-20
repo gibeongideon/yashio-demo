@@ -24,7 +24,7 @@ class HomeController extends Controller
      // 1. category_id   : you can filter all posts  and by for perticular category if category parameter is specifiedd 
 
     {
-        $postscol = Post::with('author','category');
+        $postscol = Post::with('author','category','tags');
 
         if (!is_null($category_id)){//if there is optional category parameter
 
