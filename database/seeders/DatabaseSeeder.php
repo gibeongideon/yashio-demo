@@ -114,6 +114,7 @@ class DatabaseSeeder extends Seeder
         foreach ($post1 as $post) {
 
             $post->tags()->attach(2);
+            
 
         }
         
