@@ -19,8 +19,17 @@ Task 1
 
 ROUTES:
 
+<<<<<<< HEAD
   GET|HEAD   api/user 
   GET|HEAD   authors/{author} 
   GET|HEAD   categories/{category}
   GET|HEAD   post/{post} ......... postdetails › PostController@show
   GET|HEAD   posts/{category_id?} ............... index › HomeController@index
+=======
+  GET|HEAD   api/user ........................................................................................................................ 
+  GET|HEAD   authors/{author} ................................................................................................................ 
+  GET|HEAD   categories/{category} ............................................................................................. categoryposts
+  GET|HEAD   post/{post} ................................................................................... postdetails › PostController@show
+  GET|HEAD   posts/{category_id?} ............................................................................... index › HomeController@index
+  GET|HEAD   sanctum/csrf-cookie ........................................... sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show
+>>>>>>> c70a4bd71c6364fb2aeb6a7f72b9db3057c3d534
