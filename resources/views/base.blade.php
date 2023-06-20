@@ -7,6 +7,7 @@
 
 <body>
 <h3>Yashio Simplified Demo Blog</h3>
+<h6>Of Course you can make it pritty with more HTML & CSS!.And also arrange stuff</h6>
 
 @yield('content')
 

@@ -8,12 +8,10 @@
             <div>
 
 
-          ROCKI
-            @foreach($post->roles as $role)
+          Tags:
+            @foreach($post->tags as $tag)
 
-            Tags:
-
-            <h6>$role->name</h6>
+            <h6>{{$tag->name}}</h6>
 
             @endforeach
 
