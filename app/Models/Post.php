@@ -24,4 +24,11 @@ class Post extends Model
 
         return $this->belongsTo(Category::class);
     }
+
+    // Define the relationship with the Role model/Use for tagging
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
 }
