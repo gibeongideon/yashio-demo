@@ -5,3 +5,12 @@ Test 3
 3. Create a view to display the retrieved posts in a list format.
 4. Add a route parameter to the route created in step 1, allowing the user to pass a category ID to retrieve only posts from a specific category.
 5. Update the HomeController@index method to handle the optional category parameter and retrieve posts accordingly.
+
+
+Task1
+
+Create a new tag model.
+Prepare columns for id, name in the TAG table.
+Associate the tag model with the Post model.
+This relationship between the Post model and the tag model is Many to Many: the Post model can have multiple tags, and the tag model can have multiple posts.
+Tags associated with Post should be displayed as follows.
