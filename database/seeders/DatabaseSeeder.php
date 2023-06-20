@@ -55,32 +55,40 @@ class DatabaseSeeder extends Seeder
             
         ]) ; 
 
-        $tag1 = Tag::factory()->create([
+        $tag3 = Tag::factory()->create([
             'name' => 'Publisher',
             
         ]) ; 
 
         
-        Post::factory(5)->create([
+        $post1 =Post::factory(5)->create([
             'user_id' => $author1->id,
             'category_id' => $category1,
         ]);
 
-        Post::factory(5)->create([
+        // $post1->tags()->attach($post1->id);
+
+        $post2 = Post::factory(5)->create([
             'user_id' => $author2->id,
             'category_id' => $category2,
         ]);
 
+        // $post2->tags()->attach([2,]);
 
-        Post::factory(5)->create([
+
+        $post3 = Post::factory(5)->create([
             'user_id' => $author1->id,
             'category_id' => $category3,
         ]);
 
-        Post::factory(5)->create([
+        // $post3->tags()->attach([1,2,3]);
+
+        $post4 =Post::factory(5)->create([
             'user_id' => $author2->id,
             'category_id' => $category1,
         ]);
+
+        // $post4->tags()->attach([1,3]);
 
         
         

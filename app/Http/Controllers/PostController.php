@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        die($post->roles);
+        die($post->tags);
         return view('post',[
             'post'=> $post
         ]);

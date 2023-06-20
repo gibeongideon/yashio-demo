@@ -40,7 +40,7 @@
 
 
            
-RRRRRRRRRRRRRRRRRRRR
+
             @foreach($post->roles as $role)
             Tags:
 
