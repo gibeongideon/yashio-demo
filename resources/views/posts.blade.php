@@ -1,76 +1,43 @@
 @extends('base')
 
-
 @section('content')
 <h1>ALL POSTS</h1>
 
-    @if ($posts->count())
-        @foreach($posts as $post)
-
-            <h1>
-                <a href="{{route('postdetails',$post-slug)}}">
-                BLOG ID: {{$post->id}}
-                TITTLE:{{$post->tittle}}
-
-                </a>
-
-            </h1>
-            <div>
-
+@if ($posts->count() > 0)
+    @foreach($posts as $post)
+        <h1>
+            <a href="{{ route('postdetails', $post->slug) }}">
+                BLOG ID: {{ $post->id }}
+                TITLE: {{ $post->tittle }}
+            </a>
+        </h1>
+        <div>
             <h4>
-              
-                <!-- <a href="/categories/{{$post->category->id}}"> -->
-                <a href="{{ route('postbycategory',$post->category->id) }}">
-
-                Category:{{$post->category->name}}
-
+                <a href="{{ route('postsbycategory', $post->category->id) }}">
+                    Category: {{ $post->category->name }}
                 </a>
             </h4>
-
-
             <h5>
-              
-
-                <a href="authors/{{$post->author->id}}">
-                Author:{{$post->author->name}}
-
+                <a href="{{ route('postbyauthor', $post->author->id) }}">
+                    Author: {{ $post->author->name }}
                 </a>
-            </h5>    
-            
-            <div>
-
-
-           
-
-
-             </div>
-              
-
-         
-                        <div>
-
-
-<p>
-TAGS:
-
-</p>
-
-
-             </div>
-            </div>
-
-            <div>
-
+            </h5>
+        </div>
+        <div>
             <p>
-                {{$post->body}}
+                TAGS:
+                @foreach($post->tags as $tag)
+                    {{ $tag->name }}
+                @endforeach
             </p>
-            </div>
-            
-        @endforeach
-         
-    @else
-        <p class="text-center">No posts yet. Please check back later.</p>
-    @endif
- 
-
+        </div>
+        <div>
+            <p>
+                {{ $post->body }}
+            </p>
+        </div>
+    @endforeach
+@else
+    <p class="text-center">No posts yet. Please check back later.</p>
+@endif
 @endsection

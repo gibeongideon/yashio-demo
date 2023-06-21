@@ -13,7 +13,7 @@ class PostController extends Controller
     public function index()
     {
         return view('posts', [
-            'posts' => Post::with('category','author')->get()
+            'posts' => Post::with('category','author','tags')->get()//remove N-1 issue
         ]);
     }
 
@@ -37,21 +37,19 @@ class PostController extends Controller
     $categories = Category::all();
 
     // Return the view for creating a new post with tags
-    return view('createpost', [
+    return view('post.create', [
         'tags' => $tags,
         'categories' => $categories
     ]);
     }
 
-    /**
-     * Store a newly created Post in storage.
-     */
+
 
 public function store(Post $post,Request $request)
 {
-    // Validate the incoming request data
-
-    // die($request->getContent()); //debug
+    /**
+     * Store a newly created Post in storage.
+     */    // Validate the incoming request data
 
     $validatedData = $request->validate([
         'tittle' => 'required',
@@ -74,7 +72,7 @@ public function store(Post $post,Request $request)
     }
  
     // Redirect to the post index page with a success message
-    return redirect()->route('createpost')->with('success', 'Post created successfully');
+    return redirect()->route('allposts')->with('success', 'Post created successfully');
 }
 
 

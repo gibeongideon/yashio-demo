@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TagController;
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
@@ -19,9 +20,9 @@ use App\Models\Category;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
+Route::get('/', function () {
+    return view('index');
+});
 
 
 
@@ -33,23 +34,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('admin/post/create', [PostController::class, 'create'])->name('createpost');//->middleware('admin');
-    Route::post('admin/post/store', [PostController::class, 'store'])->name('storepost');
+    Route::get('dashboard/post/create', [PostController::class, 'create'])->name('createpost');
+    Route::post('dashboard/post/store', [PostController::class, 'store'])->name('storepost');
 });
 
 
-require __DIR__.'/auth.php';
+// Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/latestposts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
 
-// Route::get('/posts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
+Route::resource('tags', TagController::class)->except(['show']);
 
+Route::get('/posts', [PostController::class, 'index'])->name('allposts');
 
-// Route::get('/posts', [PostController::class, 'index'])->name('home');
-
-
-
-Route::get('post/{post:slug}', [PostController::class, 'show'])->name('postdetails');
+Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('postdetails');
 
 Route::get('categories/{category}',function(Category $category){
     return view('postsbycategory',[
@@ -63,15 +61,14 @@ Route::get('categories/{category}',function(Category $category){
 
 
 Route::get('authors/{author}',function(User $author){
-   // dd($author);
-   //$posts = $author->post();
-
-  // dd('TEst'.$posts->count());
 
     return view('postsbyauthor',[
         'posts'=> $author->post,
        'author' => $author,
         
     ]);
-});
+})->name('postbyauthor');
 
+
+
+require __DIR__.'/auth.php';
