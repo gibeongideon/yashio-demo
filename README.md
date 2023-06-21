@@ -19,8 +19,25 @@ Task 1
 
 ROUTES:
 
-  GET|HEAD   api/user ........................................................................................................................ 
-  GET|HEAD   authors/{author} ................................................................................................................ 
-  GET|HEAD   categories/{category} ............................................................................................. categoryposts
-  GET|HEAD   post/{post} ................................................................................... postdetails › PostController@show
-  GET|HEAD   posts/{category_id?} ............................................................................... index › HomeController@index
+
+
+  GET|HEAD  dashboard ..................................................................................................................... dashboard
+  POST      email/verification-notification .................................. verification.send › Auth\EmailVerificationNotificationController@store
+  GET|HEAD  forgot-password .............................................................. password.request › Auth\PasswordResetLinkController@create
+  POST      forgot-password ................................................................. password.email › Auth\PasswordResetLinkController@store
+  GET|HEAD  login ................................................................................ login › Auth\AuthenticatedSessionController@create
+  POST      login ......................................................................................... Auth\AuthenticatedSessionController@store  
+  POST      logout ............................................................................. logout › Auth\AuthenticatedSessionController@destroy
+  PUT       password ............................................................................... password.update › Auth\PasswordController@update
+  GET|HEAD  post/{post} ........................................................................................... postdetails › PostController@show
+  GET|HEAD  posts/{category_id?} ....................................................................................... index › HomeController@index
+  GET|HEAD  profile ........................................................................................... profile.edit › ProfileController@edit
+  PATCH     profile ....................................................................................... profile.update › ProfileController@update
+  DELETE    profile ..................................................................................... profile.destroy › ProfileController@destroy
+  GET|HEAD  register ................................................................................ register › Auth\RegisteredUserController@create
+  POST      register ............................................................................................ Auth\RegisteredUserController@store
+  POST      reset-password ........................................................................ password.store › Auth\NewPasswordController@store
+  GET|HEAD  reset-password/{token} ............................................................... password.reset › Auth\NewPasswordController@create
+  GET|HEAD  sanctum/csrf-cookie ................................................... sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show
+  GET|HEAD  verify-email ............................................................... verification.notice › Auth\EmailVerificationPromptController
+  GET|HEAD  verify-email/{id}/{hash} ............................................................... verification.verify › Auth\VerifyEmailController
