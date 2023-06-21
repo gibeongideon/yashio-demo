@@ -47,30 +47,32 @@ class PostController extends Controller
      * Store a newly created Post in storage.
      */
 
-public function store(Request $request)
+public function store(Post $post,Request $request)
 {
     // Validate the incoming request data
+
+    // die($request->getContent()); //debug
+
     $validatedData = $request->validate([
         'tittle' => 'required',
         'body' => 'required',
+        'slug' => 'required',
         'tags' => 'array', 
     ]);
 
-    $user = User::take(1)->id; //TODO it should be from request
-
-    // Create a new post 
-    $post = new Post;
     $post->tittle = $validatedData['tittle'];
     $post->body = $validatedData['body']; 
-    $post->user_id = $user;//auth()->user()->id; 
+    $post->slug = $validatedData['slug']; 
+    $post->user_id = auth()->user()->id; 
+
+    // die('debug1!');//debug
 
     $post->save();
-
     // Attach tags to the post
     if (isset($validatedData['tags'])) {
         $post->tags()->sync($validatedData['tags']);
     }
-
+ 
     // Redirect to the post index page with a success message
     return redirect()->route('createpost')->with('success', 'Post created successfully');
 }

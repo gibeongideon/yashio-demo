@@ -42,7 +42,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/posts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
+// Route::get('/posts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
 
 
 // Route::get('/posts', [PostController::class, 'index'])->name('home');
