@@ -20,23 +20,12 @@ use App\Models\User;
 */
 
 
-Route::get('/',function(User $author){
-    // dd($author);
-    //$posts = $author->post();
- 
-   // dd('TEst'.$posts->count());
- 
-     return  ['Test'=>"Yashio Kenya HOME . Please check  route 'posts/{category_id?}'  ",];
- });
-
-
-
-
-
 Route::get('/posts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
 
 
 // Route::get('/posts', [PostController::class, 'index'])->name('home');
+Route::get('admin/post/create', [PostController::class, 'create'])->name('createpost');//->middleware('admin');
+Route::post('admin/post/store', [PostController::class, 'store'])->name('storepost');
 
 
 Route::get('post/{post:slug}', [PostController::class, 'show'])->name('postdetails');

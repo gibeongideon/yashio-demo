@@ -24,7 +24,7 @@ class HomeController extends Controller
      // 1. category_id   : you can filter all posts  and by for perticular category if category parameter is specifiedd 
 
     {
-        $postscol = Post::with('author','category','tags');
+        $postscol = Post::with('author','category','tags');//remove N-vscode-file://vscode-app/c:/Users/user5/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html1 problem
 
         if (!is_null($category_id)){//if there is optional category parameter
 
@@ -45,20 +45,6 @@ class HomeController extends Controller
 
         ]);
     }
-
-
-    // public function index($id)
-
-    // {
-
-    //     return view('latestposts', [
-            
-    //         'posts' => Post::where('id', $id)->get(),
-            
-    //     ]);
-    // }
-
-
 
 
 
