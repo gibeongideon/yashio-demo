@@ -28,7 +28,7 @@ class PostFactory extends Factory
             'category_id' => Category::factory(),
             'slug' => $this->faker->unique()->word,
             'tittle' => $this->faker->sentence,
-            'body'=> $this->faker->paragraph,
+            'body'=> $this->faker->words($nb =200,$asText =true),
 
         ];
     }

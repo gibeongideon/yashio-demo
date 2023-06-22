@@ -15,7 +15,7 @@
         </h1>
         <div>
             <h4>
-                <a href="{{ route('posts.category.show', $post->category->id)}}" class="text-blue-500 hover:text-blue-700">
+                <a href="{{ route('posts.categories.show', $post->category->id)}}" class="text-blue-500 hover:text-blue-700">
                     Category: {{$post->category->name}}
                 </a>
             </h4>

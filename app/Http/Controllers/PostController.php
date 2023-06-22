@@ -12,15 +12,17 @@ class PostController extends Controller
 {
     public function index()
     {
-        return view('posts', [
-            'posts' => Post::with('category','author','tags')->get()//remove N-1 issue
+        return view('posts.all', [
+            'posts' => Post::with('category','author','tags')//remove N-1 issue
+                            //   ->paginate(18)
+                              ->get()
         ]);
     }
 
     public function show(Post $post)
     {
         // die($post->tags);
-        return view('post',[
+        return view('posts.show',[
             'post'=> $post
         ]);
              
@@ -37,7 +39,7 @@ class PostController extends Controller
     $categories = Category::all();
 
     // Return the view for creating a new post with tags
-    return view('post.create', [
+    return view('posts.create', [
         'tags' => $tags,
         'categories' => $categories
     ]);
@@ -72,7 +74,7 @@ public function store(Post $post,Request $request)
     }
  
     // Redirect to the post index page with a success message
-    return redirect()->route('allposts')->with('success', 'Post created successfully');
+    return redirect()->route('index')->with('success', 'Post created successfully');
 }
 
 

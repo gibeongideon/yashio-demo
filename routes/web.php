@@ -20,10 +20,18 @@ use App\Models\Category;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
 
+
+Route::middleware('guest')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('/latestposts/{category_id?}', [HomeController::class, 'index'])->name('posts.latest'); // id is the category ID
+    Route::get('/posts', [PostController::class, 'index'])->name('posts.all');//remame to all to be explicit
+    Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+
+});
 
 
 Route::get('/dashboard', function () {
@@ -42,13 +50,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware('guest')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('index');
-    Route::get('/latestposts/{category_id?}', [HomeController::class, 'index'])->name('posts.latest'); // id is the category ID
-    Route::get('/posts', [PostController::class, 'index'])->name('posts.all');//remame to all to be explicit
-    Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
-});
 
 
 // Route::middleware('admin')->group(function () {    
@@ -59,11 +61,11 @@ Route::middleware('guest')->group(function () {
 // });
 
 
-Route::get('categories/{category}',function(Category $category){
+Route::get('categories/{category:name}',function(Category $category){
     
     return view('posts.categories.show',[
 
-        'posts'=> $category->posts->load(['author','category']),//eager load
+        'posts'=> $category->posts->load(['author','category',]),//eager load
         'category' => $category,
     ]);
     
@@ -77,7 +79,7 @@ Route::get('authors/{author}',function(User $author){
        'author' => $author,
         
     ]);
-})->name('postbyauthor');
+})->name('posts.author.show');
 
 
 
