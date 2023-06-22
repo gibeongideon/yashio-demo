@@ -2,10 +2,11 @@
 
 @section('content')
     <div class="max-w-2xl mx-auto bg-white p-8 shadow-md rounded-md">
-        <div class="mb-4">
-            <h2 class="text-2xl font-semibold">Blog Title: {{$post->tittle}}</h2>
-            <h5 class="text-2xl font-semibold">Blog ID: {{$post->id}} - Slug: {{$post->slug}}</h5>
-        </div>
+<div class="mb-4">
+    <h2 class="text-4xl font-bold text-blue-700 mb-2">Title: {{$post->tittle}}</h2>
+    <h5 class="text-lg font-semibold text-gray-600">Blog ID: {{$post->id}} - Slug: {{$post->slug}}</h5>
+</div>
+
 
         <div>
             <p class="text-gray-800">

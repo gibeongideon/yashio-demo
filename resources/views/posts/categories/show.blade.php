@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('content')
-    <h3 class="text-2xl font-bold"> {{$posts->count()}} POSTS! in Category:{{$category->name}}</h3>
+    <h3 class="text-2xl font-bold"> {{$posts->count()}} POSTS! in {{$category->name}} Category</h3>
 
     @if ($posts->count())
         @foreach($posts as $post)
@@ -28,11 +28,11 @@
                 </a>
             </h5>         
             </div>
-            <div class="mt-2">
+            <!-- <div class="mt-2">
                 <p>
                     {{$post->body}}
                 </p>
-            </div>
+            </div> -->
         @endforeach
     @else
         <p class="text-center mt-4">No posts yet. Please check back later.</p>

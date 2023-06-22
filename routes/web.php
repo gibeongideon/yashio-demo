@@ -25,18 +25,11 @@ use App\Models\Category;
 // });
 
 
-Route::middleware('guest')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('index');
-    Route::get('/latestposts/{category_id?}', [HomeController::class, 'index'])->name('posts.latest'); // id is the category ID
-    Route::get('/posts', [PostController::class, 'index'])->name('posts.all');//remame to all to be explicit
-    Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/latestposts/{category_id?}', [HomeController::class, 'index'])->name('posts.latest'); // id is the category ID
+Route::get('/posts', [PostController::class, 'index'])->name('posts.all');//remame to all to be explicit
+Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
-});
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -51,8 +44,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-
-
 // Route::middleware('admin')->group(function () {    
 //     Route::get('dashboard/post/create', [PostController::class, 'create'])->name('createpost');
 //     Route::post('dashboard/post/store', [PostController::class, 'store'])->name('storepost');
@@ -61,7 +52,7 @@ Route::middleware('auth')->group(function () {
 // });
 
 
-Route::get('categories/{category:name}',function(Category $category){
+Route::get('categories/{category}',function(Category $category){
     
     return view('posts.categories.show',[
 
