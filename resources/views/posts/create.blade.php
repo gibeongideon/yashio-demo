@@ -60,7 +60,7 @@
             </div>
 
             <div>
-                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">Create</button>
+                <button type="submit" class="bg-blue-500 text-yellow py-2 px-4 rounded-md hover:bg-blue-600">Create</button>
             </div>
         </form>
 

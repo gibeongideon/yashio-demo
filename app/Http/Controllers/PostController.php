@@ -54,13 +54,13 @@ public function store(Post $post,Request $request)
      */    // Validate the incoming request data
 
     $validatedData = $request->validate([
-        'tittle' => 'required',
+        'title' => 'required',
         'body' => 'required',
         'slug' => 'required',
         'tags' => 'array', 
     ]);
 
-    $post->tittle = $validatedData['tittle'];
+    $post->tittle = $validatedData['title'];
     $post->body = $validatedData['body']; 
     $post->slug = $validatedData['slug']; 
     $post->user_id = auth()->user()->id; 

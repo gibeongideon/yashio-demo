@@ -40,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::post('dashboard/post/store', [PostController::class, 'store'])->name('posts.store');
 
     Route::resource('tags', TagController::class)->except(['show']);
+
+    
 });
 
 

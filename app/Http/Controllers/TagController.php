@@ -15,7 +15,7 @@ class TagController extends Controller
 
     public function create()
     {
-        return view('tag.create');
+        return view('posts.tags.create');
     }
 
     public function store(Request $request)
@@ -28,7 +28,7 @@ class TagController extends Controller
 
     Tag::create($validatedData);
 
-    return redirect()->route('createpost')->with('success', 'Tag created successfully');
+    return redirect()->route('posts.create')->with('success', 'Tag created successfully');
     }
 
     // public function edit(Tag $tag)
