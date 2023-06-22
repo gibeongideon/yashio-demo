@@ -50,6 +50,10 @@
         @error('tags')
             <span class="error">{{ $message }}</span>
         @enderror
+        
+        
+
+        <a href="{{ route('tags.create') }}">CREATE NEW TAG:   </a>
     </div>
     <div>
         <button type="submit">Create</button>
