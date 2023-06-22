@@ -56,12 +56,8 @@ Simple demo Blog
 Here's a blank template to get started:
 
 
-### Built With
+### Built With PHP & Laravel
 
-
-PHP & Laravel
-
-<!-- USAGE EXAMPLES -->
 ## Usage
 
 Routes:

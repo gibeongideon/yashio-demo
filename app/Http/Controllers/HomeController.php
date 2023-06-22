@@ -19,24 +19,19 @@ class HomeController extends Controller
      * It Also filter post by CATEGORY and by OPtional User/Author
      */
     public function index($category_id = null,)
-
-    //Optional paramr
-     // 1. category_id   : you can filter all posts  and by for perticular category if category parameter is specifiedd 
-
+     //Optional parameter:category_id 
     {
-        $postscol = Post::with('author','category','tags');//remove N-vscode-file://vscode-app/c:/Users/user5/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html1 problem
+        $postscol = Post::with('author','category','tags');//remove N-1 issue
 
-        if (!is_null($category_id)){//if there is optional category parameter
+        if (!is_null($category_id)){
 
             $postscol =  $postscol
                 ->where([
                 'category_id'=> $category_id, // optional category parameter post
-        
             ]);
-            // dd($postscol->count());
         }
 
-        return view('latestposts', [
+        return view('posts.latest', [
 
             'posts' => $postscol
                            ->latest()
@@ -46,12 +41,9 @@ class HomeController extends Controller
         ]);
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      */
-
 
     public function create()
     {

@@ -34,18 +34,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('dashboard/post/create', [PostController::class, 'create'])->name('createpost');
-    Route::post('dashboard/post/store', [PostController::class, 'store'])->name('storepost');
+
+    Route::get('dashboard/post/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('dashboard/post/store', [PostController::class, 'store'])->name('posts.store');
+
     Route::resource('tags', TagController::class)->except(['show']);
 });
 
 
-
 Route::middleware('guest')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
-    Route::get('/latestposts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
-    Route::get('/posts', [PostController::class, 'index'])->name('allposts');
-    Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('postdetails');
+    Route::get('/latestposts/{category_id?}', [HomeController::class, 'index'])->name('posts.latest'); // id is the category ID
+    Route::get('/posts', [PostController::class, 'index'])->name('posts.all');//remame to all to be explicit
+    Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
 });
 
@@ -58,21 +59,15 @@ Route::middleware('guest')->group(function () {
 // });
 
 
-
-
-
-
-
-
 Route::get('categories/{category}',function(Category $category){
-    return view('postsbycategory',[
+    
+    return view('posts.categories.show',[
 
-        'posts'=>$category->post,
+        'posts'=> $category->posts->load(['author','category']),//eager load
         'category' => $category,
-        //'categories' => Category::all(),
     ]);
     
-})->name('postsbycategory');
+})->name('posts.categories.show');
 
 
 Route::get('authors/{author}',function(User $author){
