@@ -36,18 +36,33 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('dashboard/post/create', [PostController::class, 'create'])->name('createpost');
     Route::post('dashboard/post/store', [PostController::class, 'store'])->name('storepost');
+    Route::resource('tags', TagController::class)->except(['show']);
 });
 
 
-// Route::get('/', [HomeController::class, 'index'])->name('index');
 
-Route::get('/latestposts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
+Route::middleware('guest')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::get('/latestposts/{category_id?}', [HomeController::class, 'index'])->name('index'); // id is the category ID
+    Route::get('/posts', [PostController::class, 'index'])->name('allposts');
+    Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('postdetails');
 
-Route::resource('tags', TagController::class)->except(['show']);
+});
 
-Route::get('/posts', [PostController::class, 'index'])->name('allposts');
 
-Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('postdetails');
+// Route::middleware('admin')->group(function () {    
+//     Route::get('dashboard/post/create', [PostController::class, 'create'])->name('createpost');
+//     Route::post('dashboard/post/store', [PostController::class, 'store'])->name('storepost');
+//     Route::resource('tags', TagController::class)->except(['show']);
+
+// });
+
+
+
+
+
+
+
 
 Route::get('categories/{category}',function(Category $category){
     return view('postsbycategory',[
