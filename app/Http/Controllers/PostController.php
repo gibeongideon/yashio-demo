@@ -117,7 +117,7 @@ public function store(Post $post,Request $request)
             $post->tags()->detach(); // Remove all tags if none are selected
         }
 
-        return redirect()->route('index')->with('success', 'Post updated successfully');
+        return redirect()->route('posts.show',$post->slug)->with('success', 'Post updated successfully');
     }
 
     /**

@@ -1,6 +1,7 @@
 @extends('base')
 
 
+
 @section('content')
     <div class="container mx-auto">
         <div class="bg-white shadow-lg rounded-lg p-6">
@@ -12,7 +13,7 @@
                 @method('PUT')
                 <div class="mb-4">
                     <label for="title" class="block font-semibold mb-2">Title</label>
-                    <input type="text" name="title" id="title" value="{{ $post->title }}" class="w-full border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-blue-500">
+                    <input type="text" name="title" id="title" value="{{ $post->tittle }}" class="w-full border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-blue-500">
                 </div>
                 <div class="mb-4">
                     <label for="body" class="block font-semibold mb-2">Body</label>
