@@ -75,34 +75,59 @@ public function store(Post $post,Request $request)
  
     // Redirect to the post index page with a success message
     return redirect()->route('index')->with('success', 'Post created successfully');
-}
-
-
-
-
+    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        $tags = Tag::all();
+        $categories = Category::all();
+
+        return view('posts.edit', [
+            'post' => $post,
+            'tags' => $tags,
+            'categories' => $categories
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+            'slug' => 'required',
+            'tags' => 'array', 
+        ]);
+
+        $post->tittle = $validatedData['title'];
+        $post->body = $validatedData['body'];
+        $post->slug = $validatedData['slug'];
+        $post->user_id = auth()->user()->id;
+
+        $post->save();
+
+        if (isset($validatedData['tags'])) {
+            $post->tags()->sync($validatedData['tags']);
+        } else {
+            $post->tags()->detach(); // Remove all tags if none are selected
+        }
+
+        return redirect()->route('index')->with('success', 'Post updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
-    }
+        $post->tags()->detach(); // Remove all tags associated with the post
+        $post->delete();
 
+        return redirect()->route('index')->with('success', 'Post deleted successfully');
+    }
 }

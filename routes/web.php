@@ -38,6 +38,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('dashboard/post/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('dashboard/post/store', [PostController::class, 'store'])->name('posts.store');
+    Route::get('dashboard/post/create', [PostController::class, 'create'])->name('posts.create');
+
+// Route::post('dashboard/post/store', [PostController::class, 'store'])->name('posts.store');
+    Route::get('dashboard/post/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('dashboard/post/{post}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('dashboard/post/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
 
     Route::resource('tags', TagController::class)->except(['show']);
 
