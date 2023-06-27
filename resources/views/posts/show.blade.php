@@ -22,16 +22,16 @@
             </div>
         </div>
 
-@auth
-    <div class="flex justify-between items-center mt-4">
-        <a href="{{ route('posts.edit', $post) }}" class="bg-yellow-500 text-white px-3 py-1 rounded-md text-sm">Edit</a>
-        <form action="{{ route('posts.destroy', $post) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="bg-red-500 hover:bg-red-600 text-yellow px-3 py-1 rounded-md text-sm">Delete</button>
-        </form>
-    </div>
-@endauth
-
+        @auth
+            <div class="flex justify-between items-center mt-4">
+                <a href="{{ route('posts.edit', $post) }}" class="bg-yellow-500 text-white px-3 py-1 rounded-md text-sm">Edit</a>
+                <form action="{{ route('posts.destroy', $post) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-black px-3 py-1 rounded-md text-sm">Delete</button>
+                </form>
+            </div>
+        @endauth
     </div>
 @endsection
+
